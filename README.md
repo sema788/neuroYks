@@ -1,3 +1,4 @@
+👉 **[UYGULAMAYI CANLI DENEMEK İÇİN BURAYA TIKLAYIN](https://sema788.github.io/neuroYks/frontend/public/index.html)** 👈
 # NeuroYKS - YKS Akıllı Çalışma Asistanı
 
 Bu proje, YKS (TYT/AYT) öğrencileri için geliştirilmiş, "Aralıklı Tekrar" (Spaced Repetition) destekli, nesne yönelimli (OOP) mimariye sahip bir eğitim teknolojisi uygulamasıdır. 
