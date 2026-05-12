@@ -4,8 +4,8 @@
  */
 class DataService {
     constructor() {
-        // Gerçek Node.js Backend API adresimiz
-        this.API_URL = 'http://localhost:5000/api';
+        // Gerçek Node.js Backend API adresimiz (Canlı Sunucu)
+        this.API_URL = 'https://neuro-backend-sts3.onrender.com/api';
         
         // Kullanıcının anlık verisini hafızada tutarız (Token vb.)
         this.currentUser = null;
