@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroYKS - Premium Deneyim</title>
+    <link rel="stylesheet" href="../src/styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="app-container glass-panel-main">
+        
+        <!-- ONBOARDING PAGE -->
+        <div id="onboarding-view" class="view active">
+            <div id="step-1" class="onboarding-step active">
+                <div class="app-logo-large">
+                    <i class="fa-solid fa-bolt-lightning text-gradient"></i>
+                    <h1 class="text-gradient">NeuroYKS</h1>
+                </div>
+                <p class="subtitle">Zekice Öğren, Asla Unutma</p>
+                <div class="input-group glass-panel">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="username-input" placeholder="Sana nasıl hitap edelim?" autocomplete="off">
+                </div>
+                <button onclick="window.NeuroApp.onboarding.nextStep()" class="btn-primary">
+                    <span>Devam Et</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div id="step-2" class="onboarding-step hidden">
+                <div class="app-logo-large"><i class="fa-solid fa-bullseye text-gradient"></i></div>
+                <h2 style="margin-bottom: 20px;">Hedefini Belirle</h2>
+                <p class="subtitle">Seni hangi sınava hazırlayalım?</p>
+                
+                <div class="target-options">
+                    <button class="target-btn glass-panel" onclick="window.NeuroApp.onboarding.finishOnboarding('TYT')"><i class="fa-solid fa-layer-group"></i> Sadece TYT</button>
+                    <button class="target-btn glass-panel" onclick="window.NeuroApp.onboarding.finishOnboarding('AYT')"><i class="fa-solid fa-book-open"></i> Sadece AYT</button>
+                    <button class="target-btn glass-panel active-target" onclick="window.NeuroApp.onboarding.finishOnboarding('BOTH')"><i class="fa-solid fa-graduation-cap"></i> TYT + AYT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN DASHBOARD -->
+        <div id="main-view" class="view hidden">
+            
+            <header class="app-header glass-panel">
+                <div class="greeting">
+                    <h2 id="user-greeting">Merhaba!</h2>
+                    <p id="target-subtitle">TYT + AYT Modu Aktif</p>
+                </div>
+                <div class="profile-pic"><i class="fa-solid fa-robot"></i></div>
+            </header>
+
+            <div class="views-wrapper">
+                <div id="tab-learn" class="tab-content active">
+                    <div class="section-title">
+                        <h3>Derslerim</h3>
+                        <span class="badge" id="badge-display">TYT/AYT</span>
+                    </div>
+                    <div id="subjects-container"></div>
+                </div>
+
+                <div id="tab-revise" class="tab-content">
+                    <div class="section-title"><h3>Günün Tekrarları</h3></div>
+                    <div id="no-revisions" class="empty-state glass-panel hidden">
+                        <i class="fa-solid fa-mug-hot text-gradient"></i>
+                        <p>Bugün için harika gidiyorsun! Yeni konu öğrenebilirsin.</p>
+                    </div>
+                    <div id="revisions-list" class="revisions-list">
+                        <div class="quiz-card glass-panel glowing-card">
+                            <div class="quiz-badge">Kritik Tekrar Eğrisi ⚠️</div>
+                            <h3>Temel Kavramlar (Matematik)</h3>
+                            <button class="btn-outline-cyan" onclick="window.NeuroApp.quiz.openQuiz('Temel Kavramlar')"><i class="fa-solid fa-play"></i> Testi Başlat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-analyze" class="tab-content">
+                    <div class="section-title"><h3>Zeka Haritan</h3></div>
+                    <div class="stats-overview glass-panel">
+                        <div class="circle-chart" id="overall-chart">
+                            <div class="circle-inner">
+                                <div class="chart-text">
+                                    <span class="chart-percent" id="overall-percentage">%0</span>
+                                    <span class="chart-label">Genel İlerleme</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-list glass-panel" id="analysis-container">
+                        <h3>Sınav İlerlemesi</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav glass-panel">
+                <a href="#" class="nav-item active" onclick="window.NeuroApp.nav.switchTab('learn', event)"><div class="nav-icon"><i class="fa-solid fa-compass"></i></div><span>Öğren</span></a>
+                <a href="#" class="nav-item" onclick="window.NeuroApp.nav.switchTab('revise', event)"><div class="nav-icon indicator"><i class="fa-solid fa-fire"></i></div><span>Tekrar</span></a>
+                <a href="#" class="nav-item" onclick="window.NeuroApp.nav.switchTab('analyze', event)"><div class="nav-icon"><i class="fa-solid fa-chart-pie"></i></div><span>Analiz</span></a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- QUIZ MODAL COMPONENT -->
+    <div id="quiz-modal" class="modal-overlay hidden">
+        <div class="quiz-container glass-panel-main" id="quiz-dynamic-content">
+        </div>
+    </div>
+
+    <!-- Toast UI -->
+    <div id="toast" class="toast"><i class="fa-solid fa-star"></i><div class="toast-content"><h4>Haber</h4><p id="toast-message">Mesaj</p></div></div>
+
+    <!-- JS MODULES (OOP Architecture Load Order) -->
+    <script src="../src/services/DataService.js"></script>
+    <script src="../src/components/Quiz.js"></script>
+    <script src="../src/components/Navigation.js"></script>
+    <script src="../src/pages/Dashboard.js"></script>
+    <script src="../src/pages/Onboarding.js"></script>
+    <script src="../src/App.js"></script>
+    <script src="../src/index.js"></script>
+</body>
+</html>
