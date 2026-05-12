@@ -1,0 +1,10 @@
+# Node.js bağımlılıkları yüklenmemeli (npm install ile indirilir)
+node_modules/
+
+# Çevresel değişkenler ve şifreler gizli tutulmalı
+.env
+
+# İşletim sistemi ve editör dosyaları
+.DS_Store
+.vscode/
+*.log
